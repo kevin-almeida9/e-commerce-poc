@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "npx json-server -s ./api -p 5000"
   },
   "dependencies": {
     "axios": "^1.6.7",
@@ -22,6 +23,12 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
-    "typescript": "^5"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-98b8359f6-20240223",
+    "postcss-styled-syntax": "^0.6.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5",
+    "typescript-plugin-styled-components": "^3.0.0"
   }
 }

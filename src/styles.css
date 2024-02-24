@@ -1,0 +1,9 @@
+body {
+  font-family: 'Open Sans';
+  background-color: rgba(47, 46, 65, 1);
+  color: #ffffff;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
