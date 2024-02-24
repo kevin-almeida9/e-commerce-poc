@@ -1,3 +1,9 @@
+import Header, {
+  CartSubtitle,
+  CartTitle,
+  CartWrapper,
+  Logo,
+} from '@/components/Header.styled'
 import useCommerce from '@/hooks/useCommerce'
 import React, { ReactNode } from 'react'
 
@@ -5,18 +11,20 @@ function Layout({ children }: { children: ReactNode }) {
   const { cart } = useCommerce()
 
   return (
-    <div>
-      <div>
-        <h1>WeMovies</h1>
+    <div className="layout-wrapper">
+      <Header>
+        <Logo>WeMovies</Logo>
 
-        <div>
+        <CartWrapper>
           <div>
-            <p>Meu Carrinho</p>
-            <p>{cart.length} itens</p>
+            <CartTitle>Meu Carrinho</CartTitle>
+            <CartSubtitle>
+              {cart.length} {cart.length === 1 ? 'item' : 'itens'}
+            </CartSubtitle>
           </div>
           <span className="material-symbols-outlined">shopping_basket</span>
-        </div>
-      </div>
+        </CartWrapper>
+      </Header>
       <div>{children}</div>
     </div>
   )

@@ -14,10 +14,13 @@ export const metadata: Metadata = {
 }
 
 export const theme = {
-  background: 'rgba(47, 46, 65, 1)',
-  primaryColor: 'rgba(0, 158, 221, 1)',
-  secondaryColor: 'rgba(3, 155, 0, 1)',
+  background: '#2F2E41',
+  primaryColor: '#009EDD',
+  secondaryColor: '#039B00',
+  textPrimaryColor: '#FFFFFF',
+  textSecondaryColor: '#999999',
 }
+export type ITheme = typeof theme
 
 export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
