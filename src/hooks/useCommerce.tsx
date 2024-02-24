@@ -26,6 +26,7 @@ type ICommerceContext = {
   cart: Array<ICart>
   addProductToCart: (product: IProduct) => void
   removeProductToCart: (productId: number) => void
+  quantityInCart: (productId: number) => number
 }
 
 const INITIAL_COMMERCE_CONTEXT_VALUE = {
@@ -36,6 +37,7 @@ const INITIAL_COMMERCE_CONTEXT_VALUE = {
   cart: [],
   addProductToCart: () => {},
   removeProductToCart: () => {},
+  quantityInCart: () => 0,
 }
 
 const CommerceContext = createContext<ICommerceContext>(
@@ -106,6 +108,11 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     setCart((prev) => prev.filter((item) => item.id !== productId))
   }
 
+  const quantityInCart = (productId: number): number => {
+    const productInCart = cart.find((item) => item.id === productId)
+    return productInCart?.quantity || 0
+  }
+
   const values = {
     products,
     isLoadingProducts: isLoading,
@@ -114,6 +121,7 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     cart,
     addProductToCart,
     removeProductToCart,
+    quantityInCart,
   }
 
   return (

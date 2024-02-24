@@ -3,9 +3,10 @@ import Header, {
   CartTitle,
   CartWrapper,
   Logo,
-} from '@/components/Header.styled'
+} from '@/styles/Header.styled'
 import useCommerce from '@/hooks/useCommerce'
 import React, { ReactNode } from 'react'
+import Icon from '@/components/Icon'
 
 function Layout({ children }: { children: ReactNode }) {
   const { cart } = useCommerce()
@@ -22,7 +23,7 @@ function Layout({ children }: { children: ReactNode }) {
               {cart.length} {cart.length === 1 ? 'item' : 'itens'}
             </CartSubtitle>
           </div>
-          <span className="material-symbols-outlined">shopping_basket</span>
+          <Icon name="shopping_basket" />
         </CartWrapper>
       </Header>
       <div>{children}</div>

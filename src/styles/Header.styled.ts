@@ -6,7 +6,7 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 1rem;
+  padding: 1rem;
 `
 
 export const Logo = styled.h1`

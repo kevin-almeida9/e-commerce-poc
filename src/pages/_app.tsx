@@ -15,8 +15,12 @@ export const metadata: Metadata = {
 
 export const theme = {
   background: '#2F2E41',
+  cardBackground: '#FFFFFF',
+
   primaryColor: '#009EDD',
   secondaryColor: '#039B00',
+
+  textCardColor: '#2F2E41',
   textPrimaryColor: '#FFFFFF',
   textSecondaryColor: '#999999',
 }
