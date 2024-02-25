@@ -18,6 +18,11 @@ type ICart = IProduct & {
   quantity: number
 }
 
+export enum RemoveActionType {
+  item = 'item',
+  quatity = 'quatity',
+}
+
 type ICommerceContext = {
   products: Array<IProduct>
   isLoadingProducts: boolean
@@ -25,8 +30,10 @@ type ICommerceContext = {
   getProductsList: () => void
   cart: Array<ICart>
   addProductToCart: (product: IProduct) => void
-  removeProductToCart: (productId: number) => void
+  removeProductToCart: (productId: number, action?: RemoveActionType) => void
   quantityInCart: (productId: number) => number
+  totalInCart: () => number
+  handleChangeQuantityItemInCart: (productId: number, quantity: number) => void
 }
 
 const INITIAL_COMMERCE_CONTEXT_VALUE = {
@@ -38,6 +45,8 @@ const INITIAL_COMMERCE_CONTEXT_VALUE = {
   addProductToCart: () => {},
   removeProductToCart: () => {},
   quantityInCart: () => 0,
+  totalInCart: () => 0,
+  handleChangeQuantityItemInCart: () => {},
 }
 
 const CommerceContext = createContext<ICommerceContext>(
@@ -73,12 +82,17 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   const addProductToCart = (product: IProduct) => {
-    const alreadyHasProductIndex = cart.findIndex(
-      (item) => item.id === product.id
-    )
-
-    if (alreadyHasProductIndex > 0)
-      return cart[alreadyHasProductIndex].quantity++
+    const alreadyHasProduct = cart.find((item) => item.id === product.id)
+    if (alreadyHasProduct) {
+      setCart((prev) =>
+        prev.map((item) => {
+          if (item.id === alreadyHasProduct.id)
+            return { ...item, quantity: item.quantity + 1 }
+          return item
+        })
+      )
+      return
+    }
 
     const newCardItem = {
       ...product,
@@ -92,18 +106,22 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     */
   }
 
-  const removeProductToCart = (productId: number) => {
+  const removeProductToCart = (
+    productId: number,
+    action = RemoveActionType.quatity
+  ) => {
     const removedProduct = cart.find((item) => item.id === productId)
 
     if (!removedProduct) throw new Error('Produto não econtrado no carrinho.')
-    if (removedProduct.quantity > 1) {
+    if (removedProduct.quantity > 1 && action === RemoveActionType.quatity) {
       setCart((prev) =>
         prev.map((item) => {
           if (item.id === productId)
-            return { ...item, quantity: item.quantity-- }
+            return { ...item, quantity: item.quantity - 1 }
           return item
         })
       )
+      return
     }
     setCart((prev) => prev.filter((item) => item.id !== productId))
   }
@@ -111,6 +129,31 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
   const quantityInCart = (productId: number): number => {
     const productInCart = cart.find((item) => item.id === productId)
     return productInCart?.quantity || 0
+  }
+
+  const totalInCart = (): number => {
+    const total = cart.reduce((acc, item) => {
+      return acc + item.price * item.quantity
+    }, 0)
+
+    return total || 0
+  }
+
+  const handleChangeQuantityItemInCart = (
+    productId: number,
+    quantity: number
+  ) => {
+    if (typeof quantity !== 'number')
+      throw new Error(
+        'Não foi possível alterar a quantidade do produto, tente novamente mais tarde.'
+      )
+    if (quantity < 1) removeProductToCart(productId)
+    setCart((prev) =>
+      prev.map((item) => {
+        if (item.id === productId) return { ...item, quantity }
+        return item
+      })
+    )
   }
 
   const values = {
@@ -122,6 +165,8 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     addProductToCart,
     removeProductToCart,
     quantityInCart,
+    totalInCart,
+    handleChangeQuantityItemInCart,
   }
 
   return (

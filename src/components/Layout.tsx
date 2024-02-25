@@ -1,22 +1,34 @@
-import Header, {
+import {
   CartSubtitle,
   CartTitle,
   CartWrapper,
+  Header,
   Logo,
 } from '@/styles/Header.styled'
 import useCommerce from '@/hooks/useCommerce'
 import React, { ReactNode } from 'react'
 import Icon from '@/components/Icon'
+import { useRouter } from 'next/router'
 
 function Layout({ children }: { children: ReactNode }) {
   const { cart } = useCommerce()
+  const router = useRouter()
 
   return (
     <div className="layout-wrapper">
       <Header>
-        <Logo>WeMovies</Logo>
-
-        <CartWrapper>
+        <Logo
+          onClick={() => {
+            router.push('/')
+          }}
+        >
+          WeMovies
+        </Logo>
+        <CartWrapper
+          onClick={() => {
+            router.push('/cart')
+          }}
+        >
           <div>
             <CartTitle>Meu Carrinho</CartTitle>
             <CartSubtitle>

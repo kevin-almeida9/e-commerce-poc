@@ -1,11 +1,9 @@
 import styled from 'styled-components'
-
+import { Button as ButtonBase } from '@/styles/Button.styled'
 export const ProductsList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-
-  margin-top: 1.75rem;
 `
 
 export const Card = styled.div`
@@ -34,17 +32,7 @@ export const CardPrice = styled.p`
   margin-bottom: 0.5rem;
 `
 
-export const Button = styled.button<{ $selected?: boolean }>`
-  width: 100%;
-  height: 2.5rem;
-
-  font-size: 0.75rem;
-  font-weight: bold;
-
-  border-radius: 4px;
-  outline: none;
-  border: none;
-
+export const Button = styled(ButtonBase)<{ $selected?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,4 +49,9 @@ export const ButtonCounter = styled.div`
   display: flex;
   align-items: end;
   gap: 0.25rem;
+`
+
+export const ButtonText = styled.div`
+  width: 157px;
+  text-align: center;
 `

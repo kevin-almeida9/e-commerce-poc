@@ -4,6 +4,7 @@ import useCommerce from '@/hooks/useCommerce'
 import {
   Button,
   ButtonCounter,
+  ButtonText,
   Card,
   CardPrice,
   CardTitle,
@@ -39,6 +40,7 @@ function Home() {
               return (
                 <Card key={product.id}>
                   <Image
+                    priority
                     src={product.image}
                     alt={product.title}
                     width={147}
@@ -55,7 +57,11 @@ function Home() {
                       <Icon name="add_shopping_cart" size=".75rem" />
                       <span>{quantity}</span>
                     </ButtonCounter>
-                    {quantity > 0 ? 'ITEM ADICIONADO' : 'ADICIONAR AO CARRINHO'}
+                    <ButtonText>
+                      {quantity > 0
+                        ? 'ITEM ADICIONADO'
+                        : 'ADICIONAR AO CARRINHO'}
+                    </ButtonText>
                   </Button>
                 </Card>
               )
