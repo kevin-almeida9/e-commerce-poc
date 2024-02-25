@@ -1,8 +1,27 @@
+import { Button } from '@/styles/Button.styled'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import purchaseFinalizedSVG from '@/assets/purchase-finalized.svg'
+import { Card, CardTitle } from '@/styles/Card.styled'
+
 function PurchaseMade() {
+  const router = useRouter()
   return (
-    <div>
-      <p>Purchase made</p>
-    </div>
+    <Card>
+      <CardTitle>Compra realizada com sucesso!</CardTitle>
+      <Image
+        src={purchaseFinalizedSVG}
+        alt="Um ícone representando a finalização da compra."
+      />
+      <Button
+        $width={'180px'}
+        onClick={() => {
+          router.push('/')
+        }}
+      >
+        VOLTAR
+      </Button>
+    </Card>
   )
 }
 

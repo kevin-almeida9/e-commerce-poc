@@ -5,9 +5,9 @@ import {
   Button,
   ButtonCounter,
   ButtonText,
-  Card,
-  CardPrice,
-  CardTitle,
+  CardProduct,
+  CardProductPrice,
+  CardProductTitle,
   ProductsList,
 } from '@/styles/ProductsList.styled'
 import { moneyFormatter } from '@/utils/formatters'
@@ -38,7 +38,7 @@ function Home() {
               const quantity = quantityInCart(product.id)
 
               return (
-                <Card key={product.id}>
+                <CardProduct key={product.id}>
                   <Image
                     priority
                     src={product.image}
@@ -46,8 +46,10 @@ function Home() {
                     width={147}
                     height={188}
                   />
-                  <CardTitle>{product.title}</CardTitle>
-                  <CardPrice>{moneyFormatter(product.price)}</CardPrice>
+                  <CardProductTitle>{product.title}</CardProductTitle>
+                  <CardProductPrice>
+                    {moneyFormatter(product.price)}
+                  </CardProductPrice>
                   <Button
                     disabled={quantity > 0}
                     onClick={() => addProductToCart(product)}
@@ -63,7 +65,7 @@ function Home() {
                         : 'ADICIONAR AO CARRINHO'}
                     </ButtonText>
                   </Button>
-                </Card>
+                </CardProduct>
               )
             })}
         </ProductsList>

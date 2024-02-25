@@ -40,6 +40,7 @@ type ICommerceContext = {
   quantityInCart: (productId: number) => number
   totalInCart: () => number
   handleChangeQuantityItemInCart: (productId: number, quantity: number) => void
+  handleCompletePurchase: () => void
 }
 
 const INITIAL_COMMERCE_CONTEXT_VALUE = {
@@ -53,6 +54,7 @@ const INITIAL_COMMERCE_CONTEXT_VALUE = {
   quantityInCart: () => 0,
   totalInCart: () => 0,
   handleChangeQuantityItemInCart: () => {},
+  handleCompletePurchase: () => {},
 }
 
 const CommerceContext = createContext<ICommerceContext>(
@@ -187,6 +189,10 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     )
   }
 
+  const handleCompletePurchase = () => {
+    setCart([])
+  }
+
   const values = {
     products,
     isLoadingProducts: isLoading,
@@ -198,6 +204,7 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     quantityInCart,
     totalInCart,
     handleChangeQuantityItemInCart,
+    handleCompletePurchase,
   }
 
   return (

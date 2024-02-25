@@ -6,7 +6,7 @@ export const ProductsList = styled.div`
   gap: 1rem;
 `
 
-export const Card = styled.div`
+export const CardProduct = styled.div`
   flex: 1 1 280px;
 
   display: flex;
@@ -21,12 +21,12 @@ export const Card = styled.div`
   border-radius: 4px;
 `
 
-export const CardTitle = styled.p`
+export const CardProductTitle = styled.p`
   font-size: 0.75rem;
   margin-top: 0.45rem;
 `
 
-export const CardPrice = styled.p`
+export const CardProductPrice = styled.p`
   font-size: 1rem;
   margin-top: 0.15rem;
   margin-bottom: 0.5rem;

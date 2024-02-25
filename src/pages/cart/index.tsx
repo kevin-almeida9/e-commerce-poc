@@ -1,5 +1,4 @@
 import {
-  CartEmpty,
   CartList,
   CartListItemQuantity,
   CartListItemTitle,
@@ -8,7 +7,6 @@ import {
   CartListTitle,
   CartListTotalTitle,
   CartListTotalValue,
-  CartTitle,
 } from '@/styles/Cart.styled'
 import emptyCardSVG from '@/assets/empty-card.svg'
 import Image from 'next/image'
@@ -18,13 +16,15 @@ import useCommerce, { RemoveActionType } from '@/hooks/useCommerce'
 import { moneyFormatter } from '@/utils/formatters'
 import Icon from '@/components/Icon'
 import { theme } from '@/pages/_app'
-import { useEffect } from 'react'
+import { CardProduct, CardProductTitle } from '@/styles/ProductsList.styled'
 
 function CartEmptyComponent() {
   const router = useRouter()
   return (
-    <CartEmpty>
-      <CartTitle>Parece que não há nada por aqui &#58;&#40;</CartTitle>
+    <CardProduct>
+      <CardProductTitle>
+        Parece que não há nada por aqui &#58;&#40;
+      </CardProductTitle>
       <Image
         src={emptyCardSVG}
         alt="Um ícone representando um carrinho de compras vazio."
@@ -37,17 +37,19 @@ function CartEmptyComponent() {
       >
         VOLTAR
       </Button>
-    </CartEmpty>
+    </CardProduct>
   )
 }
 
 function Cart() {
+  const router = useRouter()
   const {
     cart,
     totalInCart,
     handleChangeQuantityItemInCart,
     removeProductToCart,
     addProductToCart,
+    handleCompletePurchase,
   } = useCommerce()
 
   return (
@@ -131,7 +133,15 @@ function Cart() {
       <tfoot>
         <tr>
           <td>
-            <Button $width="236px">FINALIZAR PEDIDO</Button>
+            <Button
+              $width="236px"
+              onClick={() => {
+                handleCompletePurchase()
+                router.push('/purchase-made')
+              }}
+            >
+              FINALIZAR PEDIDO
+            </Button>
           </td>
           <td>
             <CartListTotalTitle>TOTAL</CartListTotalTitle>
