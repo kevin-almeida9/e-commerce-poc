@@ -25,6 +25,8 @@ export const theme: DefaultTheme = {
   textCardColor: '#2F2E41',
   textPrimaryColor: '#FFFFFF',
   textSecondaryColor: '#999999',
+
+  borderInputColor: '#D9D9D9',
 }
 
 export default function RootLayout({ Component, pageProps }: AppProps) {

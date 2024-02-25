@@ -21,4 +21,5 @@ export const ButtonIcon = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
 `

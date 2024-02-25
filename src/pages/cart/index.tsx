@@ -1,4 +1,15 @@
-import { CartEmpty, CartList, CartTitle } from '@/styles/Cart.styled'
+import {
+  CartEmpty,
+  CartList,
+  CartListItemQuantity,
+  CartListItemTitle,
+  CartListItemValue,
+  CartListRow,
+  CartListTitle,
+  CartListTotalTitle,
+  CartListTotalValue,
+  CartTitle,
+} from '@/styles/Cart.styled'
 import emptyCardSVG from '@/assets/empty-card.svg'
 import Image from 'next/image'
 import { Button } from '@/styles/Button.styled'
@@ -43,11 +54,11 @@ function Cart() {
     <CartList>
       <thead>
         <tr>
-          <th>PRODUTO</th>
-          <th></th>
-          <th>QTD</th>
-          <th>SUBTOTAL</th>
-          <th></th>
+          <CartListTitle>PRODUTO</CartListTitle>
+          <CartListTitle></CartListTitle>
+          <CartListTitle>QTD</CartListTitle>
+          <CartListTitle>SUBTOTAL</CartListTitle>
+          <CartListTitle></CartListTitle>
         </tr>
       </thead>
       <tbody>
@@ -55,7 +66,7 @@ function Cart() {
           cart.map((item) => {
             const subTotal = item.price * item.quantity
             return (
-              <tr key={item.id}>
+              <CartListRow key={item.id}>
                 <td>
                   <Image
                     priority
@@ -66,8 +77,10 @@ function Cart() {
                   />
                 </td>
                 <td>
-                  <p>{item.title}</p>
-                  <p>{moneyFormatter(item.price)}</p>
+                  <CartListItemTitle>{item.title}</CartListItemTitle>
+                  <CartListItemValue>
+                    {moneyFormatter(item.price)}
+                  </CartListItemValue>
                 </td>
                 <td>
                   <Icon
@@ -75,9 +88,10 @@ function Cart() {
                     material="material-symbols-outlined"
                     color={theme.primaryColor}
                     onClick={() => removeProductToCart(item.id)}
+                    size={18}
                   />
-                  <input
-                    type="text"
+                  <CartListItemQuantity
+                    type="number"
                     onChange={(value) =>
                       handleChangeQuantityItemInCart(
                         item.id,
@@ -91,13 +105,17 @@ function Cart() {
                     material="material-symbols-outlined"
                     color={theme.primaryColor}
                     onClick={() => addProductToCart(item)}
+                    size={18}
                   />
                 </td>
                 <td>
-                  <p>{moneyFormatter(subTotal)}</p>
+                  <CartListItemValue>
+                    {moneyFormatter(subTotal)}
+                  </CartListItemValue>
                 </td>
                 <td>
                   <Icon
+                    size={18}
                     name="delete"
                     material="material-icons"
                     color={theme.primaryColor}
@@ -106,7 +124,7 @@ function Cart() {
                     }
                   />
                 </td>
-              </tr>
+              </CartListRow>
             )
           })}
       </tbody>
@@ -116,8 +134,10 @@ function Cart() {
             <Button $width="236px">FINALIZAR PEDIDO</Button>
           </td>
           <td>
-            <p>TOTAL</p>
-            <p>{moneyFormatter(totalInCart())}</p>
+            <CartListTotalTitle>TOTAL</CartListTotalTitle>
+            <CartListTotalValue>
+              {moneyFormatter(totalInCart())}
+            </CartListTotalValue>
           </td>
         </tr>
       </tfoot>

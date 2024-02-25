@@ -11,5 +11,7 @@ declare module 'styled-components' {
     textCardColor: string
     textPrimaryColor: string
     textSecondaryColor: string
+
+    borderInputColor: string
   }
 }

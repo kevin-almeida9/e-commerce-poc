@@ -20,6 +20,14 @@
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "ts-styled-plugin",
+        "lint": {
+          "validProperties": [
+            "text-wrap"
+          ]
+        }
       }
     ],
     "paths": {

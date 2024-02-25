@@ -4,6 +4,8 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
+  useLayoutEffect,
   useState,
 } from 'react'
 
@@ -21,6 +23,10 @@ type ICart = IProduct & {
 export enum RemoveActionType {
   item = 'item',
   quatity = 'quatity',
+}
+
+enum LocalStorageProps {
+  WeMoviesCart = 'WeMoviesCart',
 }
 
 type ICommerceContext = {
@@ -59,6 +65,31 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const [cart, setCart] = useState<Array<ICart>>([])
+
+  useEffect(() => {
+    const updateLocalStorageCart = (cart: Array<ICart> = []) => {
+      localStorage.setItem(LocalStorageProps.WeMoviesCart, JSON.stringify(cart))
+    }
+
+    updateLocalStorageCart(cart)
+  }, [cart])
+
+  useLayoutEffect(() => {
+    const getLocalStorageCart = () => {
+      const localStorageCart = localStorage.getItem(
+        LocalStorageProps.WeMoviesCart
+      )
+
+      if (localStorageCart) {
+        const localStorageCartParsed = JSON.parse(localStorageCart)
+
+        if (Array.isArray(localStorageCartParsed))
+          setCart(localStorageCartParsed)
+      }
+    }
+
+    getLocalStorageCart()
+  }, [])
 
   const getProductsList = useCallback(async () => {
     try {
