@@ -15,4 +15,5 @@ export const Card = styled.div`
 
 export const CardTitle = styled.h1`
   font-size: 1.25rem;
+  height: 2.1875rem;
 `

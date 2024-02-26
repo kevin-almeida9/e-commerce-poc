@@ -4,12 +4,15 @@ export const CartListWrapper = styled.div`
   padding: 1.5rem;
   color: ${(props) => props.theme.textCardColor};
   background-color: ${(props) => props.theme.cardBackground};
+
+  border-radius: 4px;
+  max-width: 950px;
 `
 
 export const CartList = styled.table`
   color: ${(props) => props.theme.textCardColor};
   background-color: ${(props) => props.theme.cardBackground};
-  table-layout: auto;
+  border-collapse: collapse;
   width: 100%;
 `
 
@@ -24,8 +27,9 @@ export const CartListRow = styled.tr`
 `
 
 export const CartListCell = styled.td<{ $width?: string }>`
-  width: ${(props) => props.$width};
+  width: ${(props) => props.$width || 'auto'};
   padding: 1.3125rem 0;
+
   vertical-align: middle;
   display: table-cell;
 

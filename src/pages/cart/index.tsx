@@ -34,6 +34,7 @@ function CartEmpty() {
       />
       <Button
         $width={'180px'}
+        $fontSize="0.875rem"
         onClick={() => {
           router.push('/')
         }}
@@ -140,6 +141,7 @@ function Cart() {
       <CartListFooter>
         <Button
           $width="236px"
+          $fontSize="0,875rem"
           onClick={() => {
             handleCompletePurchase()
             router.push('/purchase-made')

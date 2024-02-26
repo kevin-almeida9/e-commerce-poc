@@ -15,6 +15,7 @@ function PurchaseMade() {
       />
       <Button
         $width={'180px'}
+        $fontSize="0.875rem"
         onClick={() => {
           router.push('/')
         }}
