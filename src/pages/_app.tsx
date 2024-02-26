@@ -6,7 +6,6 @@ import { Open_Sans } from 'next/font/google'
 import { ThemeProvider } from 'styled-components'
 import '../styles.css'
 import { DefaultTheme } from 'styled-components/dist/types'
-import Head from 'next/head'
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 

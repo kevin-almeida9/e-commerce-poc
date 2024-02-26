@@ -24,6 +24,7 @@ export const CartWrapper = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0;
 
   text-align: end;
 
@@ -34,11 +35,16 @@ export const CartWrapper = styled.button`
 `
 
 export const CartTitle = styled.p`
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 600;
+  height: 1.1875rem;
+  padding-right: 0.1875rem;
 `
 
 export const CartSubtitle = styled.p`
   font-size: 0.75rem;
+  font-weight: 600;
+  height: 1.1875rem;
+  padding-right: 0.1875rem;
   color: ${(props) => props.theme.textSecondaryColor};
 `

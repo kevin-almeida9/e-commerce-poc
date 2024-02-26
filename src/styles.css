@@ -6,7 +6,6 @@ main,
 }
 
 body {
-  font-family: 'Open Sans';
   background-color: rgba(47, 46, 65, 1);
   color: #ffffff;
   margin: 0;
@@ -41,4 +40,11 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+button {
+  font-family: var(--font-open-sans);
+  padding: 0;
+  padding-block: 0;
+  padding-inline: 0;
 }
