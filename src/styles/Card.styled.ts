@@ -11,9 +11,18 @@ export const Card = styled.div`
 
   color: ${(props) => props.theme.textCardColor};
   background-color: ${(props) => props.theme.cardBackground};
+
+  @media screen and (max-width: 768px) {
+    margin: 1rem;
+    padding: 4rem 0;
+  }
 `
 
 export const CardTitle = styled.h1`
   font-size: 1.25rem;
   height: 2.1875rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 4rem;
+  }
 `

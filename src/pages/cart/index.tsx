@@ -29,6 +29,7 @@ function CartEmpty() {
     <Card>
       <CardTitle>Parece que não há nada por aqui &#58;&#40;</CardTitle>
       <Image
+        style={{ width: '100%' }}
         src={emptyCardSVG}
         alt="Um ícone representando um carrinho de compras vazio."
       />

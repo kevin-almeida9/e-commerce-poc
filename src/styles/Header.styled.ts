@@ -39,6 +39,10 @@ export const CartTitle = styled.p`
   font-weight: 600;
   height: 1.1875rem;
   padding-right: 0.1875rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 
 export const CartSubtitle = styled.p`
