@@ -115,7 +115,7 @@ function Cart() {
                     />
                   </CartListQuatityControl>
                 </CartListCell>
-                <CartListCell $column="2.25">
+                <CartListCell $column="2.25 ">
                   <CartListItemValue>
                     {moneyFormatter(subTotal)}
                   </CartListItemValue>

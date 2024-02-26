@@ -7,6 +7,16 @@ export const CartListWrapper = styled.div`
 
   border-radius: 4px;
   max-width: 950px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 1rem;
+    padding: 1.5rem;
+    height: 100%;
+  }
 `
 
 export const CartList = styled.div`
@@ -20,6 +30,10 @@ export const CartList = styled.div`
 export const CartListHeaderWrapper = styled.div`
   display: flex;
   gap: 1.3125rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 
 export const CartListTitleColumn = styled.div<{ $column?: string }>`
@@ -33,10 +47,15 @@ export const CartListTitleColumn = styled.div<{ $column?: string }>`
 export const CartListRow = styled.div`
   display: flex;
   gap: 1.3125rem;
+  padding: 1.3125rem 0;
 
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.borderColor};
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const CartListCell = styled.div<{
@@ -108,4 +127,14 @@ export const CartListFooter = styled.div`
   padding-top: 1.3125rem;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 1rem;
+
+    button {
+      width: 100%;
+    }
+  }
 `
