@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useState,
 } from 'react'
 
@@ -75,22 +76,23 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     updateLocalStorageCart(cart)
   }, [cart])
 
-  useEffect(() => {
-    const getLocalStorageCart = () => {
-      const localStorageCart = localStorage.getItem(
-        LocalStorageProps.WeMoviesCart
-      )
+  if (typeof window !== 'undefined')
+    useLayoutEffect(() => {
+      const getLocalStorageCart = () => {
+        const localStorageCart = localStorage.getItem(
+          LocalStorageProps.WeMoviesCart
+        )
 
-      if (localStorageCart) {
-        const localStorageCartParsed = JSON.parse(localStorageCart)
+        if (localStorageCart) {
+          const localStorageCartParsed = JSON.parse(localStorageCart)
 
-        if (Array.isArray(localStorageCartParsed))
-          setCart(localStorageCartParsed)
+          if (Array.isArray(localStorageCartParsed))
+            setCart(localStorageCartParsed)
+        }
       }
-    }
 
-    getLocalStorageCart()
-  }, [])
+      getLocalStorageCart()
+    }, [])
 
   const getProductsList = useCallback(async () => {
     try {

@@ -2,12 +2,13 @@ import {
   CartList,
   CartListCell,
   CartListFooter,
+  CartListHeaderWrapper,
   CartListItemQuantity,
   CartListItemTitle,
   CartListItemValue,
   CartListQuatityControl,
   CartListRow,
-  CartListTitle,
+  CartListTitleColumn,
   CartListTotalTitle,
   CartListTotalValue,
   CartListTotalWrapper,
@@ -60,84 +61,79 @@ function Cart() {
   return (
     <CartListWrapper>
       <CartList>
-        <thead>
-          <CartListRow>
-            <CartListTitle>PRODUTO</CartListTitle>
-            <CartListTitle></CartListTitle>
-            <CartListTitle>QTD</CartListTitle>
-            <CartListTitle>SUBTOTAL</CartListTitle>
-            <CartListTitle></CartListTitle>
-          </CartListRow>
-        </thead>
-        <tbody>
-          {Array.isArray(cart) &&
-            cart.map((item) => {
-              const subTotal = item.price * item.quantity
-              return (
-                <CartListRow key={item.id}>
-                  <CartListCell>
-                    <Image
-                      priority
-                      src={item.image}
-                      alt={item.title}
-                      width={89}
-                      height={114}
-                    />
-                  </CartListCell>
-                  <CartListCell $width="253px">
-                    <CartListItemTitle>{item.title}</CartListItemTitle>
-                    <CartListItemValue>
-                      {moneyFormatter(item.price)}
-                    </CartListItemValue>
-                  </CartListCell>
-                  <CartListCell>
-                    <CartListQuatityControl>
-                      <Icon
-                        name="do_not_disturb_on"
-                        material="material-symbols-outlined"
-                        color={theme.primaryColor}
-                        onClick={() => removeProductToCart(item.id)}
-                        size={18}
-                      />
-                      <CartListItemQuantity
-                        type="number"
-                        onChange={(value) =>
-                          handleChangeQuantityItemInCart(
-                            item.id,
-                            Number(value.target.value)
-                          )
-                        }
-                        value={item.quantity}
-                      />
-                      <Icon
-                        name="add_circle"
-                        material="material-symbols-outlined"
-                        color={theme.primaryColor}
-                        onClick={() => addProductToCart(item)}
-                        size={18}
-                      />
-                    </CartListQuatityControl>
-                  </CartListCell>
-                  <CartListCell>
-                    <CartListItemValue>
-                      {moneyFormatter(subTotal)}
-                    </CartListItemValue>
-                  </CartListCell>
-                  <CartListCell>
+        <CartListHeaderWrapper>
+          <CartListTitleColumn $column="2">PRODUTO</CartListTitleColumn>
+          <CartListTitleColumn>QTD</CartListTitleColumn>
+          <CartListTitleColumn $column="2">SUBTOTAL</CartListTitleColumn>
+        </CartListHeaderWrapper>
+
+        {Array.isArray(cart) &&
+          cart.map((item) => {
+            const subTotal = item.price * item.quantity
+            return (
+              <CartListRow key={item.id}>
+                <CartListCell>
+                  <Image
+                    priority
+                    src={item.image}
+                    alt={item.title}
+                    width={89}
+                    height={114}
+                  />
+                </CartListCell>
+                <CartListCell $direction="column" $column="1.50">
+                  <CartListItemTitle>{item.title}</CartListItemTitle>
+                  <CartListItemValue>
+                    {moneyFormatter(item.price)}
+                  </CartListItemValue>
+                </CartListCell>
+                <CartListCell $column=".75">
+                  <CartListQuatityControl>
                     <Icon
-                      size={18}
-                      name="delete"
-                      material="material-icons"
+                      name="do_not_disturb_on"
+                      material="material-symbols-outlined"
                       color={theme.primaryColor}
-                      onClick={() =>
-                        removeProductToCart(item.id, RemoveActionType.item)
-                      }
+                      onClick={() => removeProductToCart(item.id)}
+                      size={18}
                     />
-                  </CartListCell>
-                </CartListRow>
-              )
-            })}
-        </tbody>
+                    <CartListItemQuantity
+                      type="number"
+                      onChange={(value) =>
+                        handleChangeQuantityItemInCart(
+                          item.id,
+                          Number(value.target.value)
+                        )
+                      }
+                      value={item.quantity}
+                    />
+                    <Icon
+                      name="add_circle"
+                      material="material-symbols-outlined"
+                      color={theme.primaryColor}
+                      onClick={() => addProductToCart(item)}
+                      size={18}
+                    />
+                  </CartListQuatityControl>
+                </CartListCell>
+                <CartListCell $column="2.25">
+                  <CartListItemValue>
+                    {moneyFormatter(subTotal)}
+                  </CartListItemValue>
+                </CartListCell>
+                <CartListCell $column=".25" $rowAligh="flex-end">
+                  <Icon
+                    size={18}
+                    name="delete"
+                    material="material-icons"
+                    color={theme.primaryColor}
+                    onClick={() =>
+                      removeProductToCart(item.id, RemoveActionType.item)
+                    }
+                  />
+                </CartListCell>
+              </CartListRow>
+            )
+          })}
       </CartList>
       <CartListFooter>
         <Button

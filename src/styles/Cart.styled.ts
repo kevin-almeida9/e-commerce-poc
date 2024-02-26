@@ -9,37 +9,51 @@ export const CartListWrapper = styled.div`
   max-width: 950px;
 `
 
-export const CartList = styled.table`
+export const CartList = styled.div`
+  display: flex;
+  flex-direction: column;
+
   color: ${(props) => props.theme.textCardColor};
   background-color: ${(props) => props.theme.cardBackground};
-  border-collapse: collapse;
-  width: 100%;
 `
 
-export const CartListTitle = styled.th`
+export const CartListHeaderWrapper = styled.div`
+  display: flex;
+  gap: 1.3125rem;
+`
+
+export const CartListTitleColumn = styled.div<{ $column?: string }>`
+  flex-grow: ${(props) => props.$column || 1};
   color: ${(props) => props.theme.textSecondaryColor};
   font-size: 0.875rem;
+  font-weight: bold;
   text-align: start;
 `
 
-export const CartListRow = styled.tr`
-  display: table-row;
-`
-
-export const CartListCell = styled.td<{ $width?: string }>`
-  width: ${(props) => props.$width || 'auto'};
-  padding: 1.3125rem 0;
-
-  vertical-align: middle;
-  display: table-cell;
+export const CartListRow = styled.div`
+  display: flex;
+  gap: 1.3125rem;
 
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.borderColor};
+`
 
-  &:not(:last-child) {
-    padding-right: 3.25rem;
-  }
+export const CartListCell = styled.div<{
+  $width?: string
+  $column?: string
+  $direction?: 'row' | 'column'
+  $rowAligh?: 'flex-start' | 'center' | 'flex-end'
+}>`
+  width: ${(props) => props.$width};
+  flex-grow: ${(props) => props.$column};
+  flex-direction: ${(props) => props.$direction};
+
+  display: flex;
+  align-items: ${(props) =>
+    props.$direction === 'column' ? props.$rowAligh || 'flex-start' : 'center'};
+  justify-content: ${(props) =>
+    props.$direction === 'column' ? 'center' : props.$rowAligh || 'flex-start'};
 `
 
 export const CartListQuatityControl = styled.div`
