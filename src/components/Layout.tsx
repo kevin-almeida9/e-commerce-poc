@@ -38,7 +38,7 @@ function Layout({ children }: { children: ReactNode }) {
           <Icon name="shopping_basket" />
         </CartWrapper>
       </Header>
-      <div>{children}</div>
+      {children}
     </div>
   )
 }

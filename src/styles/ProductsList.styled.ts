@@ -55,3 +55,10 @@ export const ButtonText = styled.div`
   width: 157px;
   text-align: center;
 `
+
+export const ProductsListLoadingWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

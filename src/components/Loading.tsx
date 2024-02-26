@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styled, { keyframes } from 'styled-components'
-import loadSpinnerIcon from '@/assets/load-spinner.svg'
+import loadSpinnerIcon from '@/assets/load-spinner.png'
 
 const rotate = keyframes`
   from {
@@ -15,8 +15,8 @@ const rotate = keyframes`
 const Rotate = styled.div`
   display: inline-block;
   animation: ${rotate} 2s linear infinite;
-  font-size: 1.2rem;
-  background-color: #fff;
+  width: 5.1875rem;
+  height: 5.1875rem;
 `
 
 function Loading() {
@@ -25,8 +25,6 @@ function Loading() {
       <Image
         priority
         src={loadSpinnerIcon}
-        height={60}
-        width={60}
         alt="Ícone de carregamento giratório "
       />
     </Rotate>

@@ -5,7 +5,6 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useState,
 } from 'react'
 
@@ -76,7 +75,7 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
     updateLocalStorageCart(cart)
   }, [cart])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const getLocalStorageCart = () => {
       const localStorageCart = localStorage.getItem(
         LocalStorageProps.WeMoviesCart
@@ -110,7 +109,7 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
       console.error(err)
       setErrorMessage(err.message)
     } finally {
-      setIsLoading(false)
+      // setIsLoading(false)
     }
   }, [])
 

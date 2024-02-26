@@ -9,6 +9,7 @@ import {
   CardProductPrice,
   CardProductTitle,
   ProductsList,
+  ProductsListLoadingWrapper,
 } from '@/styles/ProductsList.styled'
 import { moneyFormatter } from '@/utils/formatters'
 import Image from 'next/image'
@@ -28,9 +29,11 @@ function Home() {
   }, [])
 
   return (
-    <div>
+    <>
       {isLoadingProducts ? (
-        <Loading />
+        <ProductsListLoadingWrapper>
+          <Loading />
+        </ProductsListLoadingWrapper>
       ) : (
         <ProductsList>
           {Array.isArray(products) &&
@@ -70,7 +73,7 @@ function Home() {
             })}
         </ProductsList>
       )}
-    </div>
+    </>
   )
 }
 

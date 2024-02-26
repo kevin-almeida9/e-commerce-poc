@@ -1,9 +1,16 @@
 import styled from 'styled-components'
 
-export const CartList = styled.table`
+export const CartListWrapper = styled.div`
   padding: 1.5rem;
   color: ${(props) => props.theme.textCardColor};
   background-color: ${(props) => props.theme.cardBackground};
+`
+
+export const CartList = styled.table`
+  color: ${(props) => props.theme.textCardColor};
+  background-color: ${(props) => props.theme.cardBackground};
+  table-layout: auto;
+  width: 100%;
 `
 
 export const CartListTitle = styled.th`
@@ -13,7 +20,28 @@ export const CartListTitle = styled.th`
 `
 
 export const CartListRow = styled.tr`
-  gap: 3.25rem;
+  display: table-row;
+`
+
+export const CartListCell = styled.td<{ $width?: string }>`
+  width: ${(props) => props.$width};
+  padding: 1.3125rem 0;
+  vertical-align: middle;
+  display: table-cell;
+
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: ${(props) => props.theme.borderColor};
+
+  &:not(:last-child) {
+    padding-right: 3.25rem;
+  }
+`
+
+export const CartListQuatityControl = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.6875rem;
 `
 
 export const CartListItemTitle = styled.p`
@@ -30,7 +58,7 @@ export const CartListItemValue = styled.p`
 export const CartListItemQuantity = styled.input`
   width: 3.875rem;
   height: 1.625rem;
-  margin: 0 0.6875rem;
+
   border-radius: 0.25rem;
   border-color: ${(props) => props.theme.borderInputColor};
   border-style: solid;
@@ -39,9 +67,16 @@ export const CartListItemQuantity = styled.input`
   text-align: center;
 `
 
+export const CartListTotalWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const CartListTotalTitle = styled.p`
   font-size: 0.875rem;
   text-align: start;
+  font-weight: bold;
+  color: ${(props) => props.theme.textSecondaryColor};
 `
 
 export const CartListTotalValue = styled.p`
@@ -49,4 +84,10 @@ export const CartListTotalValue = styled.p`
   font-weight: bold;
   font-size: 1.5rem;
   width: 130.79px;
+`
+
+export const CartListFooter = styled.div`
+  padding-top: 1.3125rem;
+  display: flex;
+  justify-content: space-between;
 `

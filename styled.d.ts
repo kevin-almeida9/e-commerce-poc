@@ -13,5 +13,6 @@ declare module 'styled-components' {
     textSecondaryColor: string
 
     borderInputColor: string
+    borderColor: string
   }
 }

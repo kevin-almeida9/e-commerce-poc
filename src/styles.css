@@ -1,7 +1,15 @@
+html,
+body,
+main,
+#__next {
+  height: 100%;
+}
+
 body {
   font-family: 'Open Sans';
   background-color: rgba(47, 46, 65, 1);
   color: #ffffff;
+  margin: 0;
 
   main {
     display: flex;
