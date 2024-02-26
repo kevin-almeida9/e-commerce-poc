@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio de E-commerce
 
-## Getting Started
+Este é um desafio de criação de um e-commerce utilizando React/Next.js, TypeScript e styled-components.
 
-First, run the development server:
+## Como rodar o projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clonar o repositório:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/kevin-almeida9/e-commerce-poc.git
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Instalar dependências:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   yarn
+   ```
 
-## Learn More
+3. **Adicionar o arquivo `.env.local` na raiz do projeto seguindo o exemplo abaixo:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   NEXT_PUBLIC_API_URL=http://localhost:5000/
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Por padrão, o servidor da API será executado na porta 5000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Rodar o projeto:**
+   - Para rodar o projeto e a API ao mesmo tempo:
 
-## Deploy on Vercel
+     ```bash
+     yarn run-project
+     ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - Ou, alternativamente, pode-se iniciar separadamente a API e o servidor Next.js:
+     - Para iniciar a API:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+       ```bash
+       yarn serve
+       ```
+
+     - Para iniciar o servidor Next.js:
+
+       ```bash
+       yarn dev
+       ```
+
+Certifique-se de ter todas as dependências necessárias instaladas e de seguir corretamente os passos acima para executar o projeto com sucesso.
