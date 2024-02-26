@@ -17,6 +17,9 @@ const Rotate = styled.div`
   animation: ${rotate} 2s linear infinite;
   width: 5.1875rem;
   height: 5.1875rem;
+
+  position: absolute;
+  top: 45%;
 `
 
 function Loading() {

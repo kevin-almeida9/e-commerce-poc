@@ -109,7 +109,7 @@ export const CommerceProvider = ({ children }: { children: ReactNode }) => {
       console.error(err)
       setErrorMessage(err.message)
     } finally {
-      // setIsLoading(false)
+      setIsLoading(false)
     }
   }, [])
 
