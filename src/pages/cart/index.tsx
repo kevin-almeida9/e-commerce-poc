@@ -1,5 +1,6 @@
 import {
   CartList,
+  CartListActions,
   CartListCell,
   CartListFooter,
   CartListHeaderWrapper,
@@ -8,6 +9,7 @@ import {
   CartListItemValue,
   CartListQuatityControl,
   CartListRow,
+  CartListSubTotal,
   CartListTitleColumn,
   CartListTotalTitle,
   CartListTotalValue,
@@ -23,6 +25,7 @@ import { moneyFormatter } from '@/utils/formatters'
 import Icon from '@/components/Icon'
 import { theme } from '@/pages/_app'
 import { Card, CardTitle } from '@/styles/Card.styled'
+import { getTypeDevice } from '@/utils/device'
 
 function CartEmpty() {
   const router = useRouter()
@@ -72,65 +75,83 @@ function Cart() {
             const subTotal = item.price * item.quantity
             return (
               <CartListRow key={item.id}>
-                <CartListCell>
+                <CartListCell $mobileOrder={0}>
                   <Image
                     priority
                     src={item.image}
                     alt={item.title}
-                    width={89}
-                    height={114}
+                    width={getTypeDevice() === 'mobile' ? 64 : 89}
+                    height={getTypeDevice() === 'mobile' ? 82 : 114}
                   />
                 </CartListCell>
-                <CartListCell $direction="column" $column="1.50">
-                  <CartListItemTitle>{item.title}</CartListItemTitle>
-                  <CartListItemValue>
-                    {moneyFormatter(item.price)}
-                  </CartListItemValue>
-                </CartListCell>
-                <CartListCell $column=".75">
-                  <CartListQuatityControl>
+                <CartListActions>
+                  <CartListCell
+                    $mobileOrder={1}
+                    $direction="column"
+                    $column="1.50"
+                    $mobileDirection="row"
+                    $mobileGap="1rem"
+                  >
+                    <CartListItemTitle>{item.title}</CartListItemTitle>
+                    <CartListItemValue>
+                      {moneyFormatter(item.price)}
+                    </CartListItemValue>
+                  </CartListCell>
+                  <CartListCell $column=".75" $mobileOrder={3}>
+                    <CartListQuatityControl>
+                      <Icon
+                        name="do_not_disturb_on"
+                        material="material-symbols-outlined"
+                        color={theme.primaryColor}
+                        onClick={() => removeProductToCart(item.id)}
+                        size={18}
+                      />
+                      <CartListItemQuantity
+                        type="number"
+                        onChange={(value) =>
+                          handleChangeQuantityItemInCart(
+                            item.id,
+                            Number(value.target.value)
+                          )
+                        }
+                        value={item.quantity}
+                      />
+                      <Icon
+                        name="add_circle"
+                        material="material-symbols-outlined"
+                        color={theme.primaryColor}
+                        onClick={() => addProductToCart(item)}
+                        size={18}
+                      />
+                    </CartListQuatityControl>
+                  </CartListCell>
+                  <CartListCell
+                    $mobileOrder={4}
+                    $mobileDirection="column"
+                    $column="2.25"
+                    $mobileJustify="center"
+                  >
+                    <CartListSubTotal>SUBTOTAL</CartListSubTotal>
+                    <CartListItemValue>
+                      {moneyFormatter(subTotal)}
+                    </CartListItemValue>
+                  </CartListCell>
+                  <CartListCell
+                    $column=".25"
+                    $rowAligh="flex-end"
+                    $mobileOrder={2}
+                  >
                     <Icon
-                      name="do_not_disturb_on"
-                      material="material-symbols-outlined"
-                      color={theme.primaryColor}
-                      onClick={() => removeProductToCart(item.id)}
                       size={18}
-                    />
-                    <CartListItemQuantity
-                      type="number"
-                      onChange={(value) =>
-                        handleChangeQuantityItemInCart(
-                          item.id,
-                          Number(value.target.value)
-                        )
+                      name="delete"
+                      material="material-icons"
+                      color={theme.primaryColor}
+                      onClick={() =>
+                        removeProductToCart(item.id, RemoveActionType.item)
                       }
-                      value={item.quantity}
                     />
-                    <Icon
-                      name="add_circle"
-                      material="material-symbols-outlined"
-                      color={theme.primaryColor}
-                      onClick={() => addProductToCart(item)}
-                      size={18}
-                    />
-                  </CartListQuatityControl>
-                </CartListCell>
-                <CartListCell $column="2.25 ">
-                  <CartListItemValue>
-                    {moneyFormatter(subTotal)}
-                  </CartListItemValue>
-                </CartListCell>
-                <CartListCell $column=".25" $rowAligh="flex-end">
-                  <Icon
-                    size={18}
-                    name="delete"
-                    material="material-icons"
-                    color={theme.primaryColor}
-                    onClick={() =>
-                      removeProductToCart(item.id, RemoveActionType.item)
-                    }
-                  />
-                </CartListCell>
+                  </CartListCell>
+                </CartListActions>
               </CartListRow>
             )
           })}

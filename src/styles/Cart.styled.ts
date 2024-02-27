@@ -55,6 +55,7 @@ export const CartListRow = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-wrap: wrap;
+    gap: 1rem;
   }
 `
 
@@ -63,6 +64,10 @@ export const CartListCell = styled.div<{
   $column?: string
   $direction?: 'row' | 'column'
   $rowAligh?: 'flex-start' | 'center' | 'flex-end'
+  $mobileDirection?: 'row' | 'column'
+  $mobileGap?: string
+  $mobileJustify?: 'flex-start' | 'center' | 'flex-end'
+  $mobileOrder?: number
 }>`
   width: ${(props) => props.$width};
   flex-grow: ${(props) => props.$column};
@@ -73,12 +78,23 @@ export const CartListCell = styled.div<{
     props.$direction === 'column' ? props.$rowAligh || 'flex-start' : 'center'};
   justify-content: ${(props) =>
     props.$direction === 'column' ? 'center' : props.$rowAligh || 'flex-start'};
+
+  @media screen and (max-width: 768px) {
+    flex-direction: ${(props) => props.$mobileDirection};
+    gap: ${(props) => props.$mobileGap};
+    justify-content: ${(props) => props.$mobileJustify};
+    order: ${(props) => props.$mobileOrder};
+  }
 `
 
 export const CartListQuatityControl = styled.div`
   display: flex;
   align-items: center;
   gap: 0.6875rem;
+
+  @media screen and (max-width: 768px) {
+    gap: 0.25rem;
+  }
 `
 
 export const CartListItemTitle = styled.p`
@@ -102,6 +118,10 @@ export const CartListItemQuantity = styled.input`
   border-width: 0.0625rem; //1px
   padding: 0;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    width: 3.6875rem;
+  }
 `
 
 export const CartListTotalWrapper = styled.div`
@@ -136,5 +156,25 @@ export const CartListFooter = styled.div`
     button {
       width: 100%;
     }
+  }
+`
+
+export const CartListActions = styled.div`
+  display: contents;
+
+  @media screen and (max-width: 768px) {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+`
+
+export const CartListSubTotal = styled.p`
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.textSecondaryColor};
+
+  @media screen and (min-width: 769px) {
+    display: none;
   }
 `
